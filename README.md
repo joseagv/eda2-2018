@@ -1,6 +1,6 @@
 # Estructura de Datos y Algoritmos 2
 # Curso: 2017 - 2018
 
-* JosÈ AndrÈs Gonz·lez Ventura
-*
+* Jos√© Andr√©s Gonz√°lez Ventura
+* Juan Jos√© M√©ndez Contreras
 *
