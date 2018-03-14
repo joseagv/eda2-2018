@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class Ciudad {
 
+	
 	private String nombreCiudad;
 	private String rutaArchivoEntrada;
 	private String rutaArchivoSalida;
