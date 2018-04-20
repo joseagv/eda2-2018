@@ -1,34 +1,44 @@
 package org.eda2.practica1;
 
+import java.util.Scanner;
+
 public class Poste {
-	private boolean corriente;
-	private int numPoste;
 
-	public Poste(boolean corriente, int numPoste) {
-		super();
-		this.corriente = corriente;
-		this.numPoste = numPoste;
+	private int numeroPoste;
+	private boolean pasaCorriente;
+	
+	public Poste(int numeroPoste, boolean pasaCorriente) {
+		this.numeroPoste = numeroPoste;
+		this.pasaCorriente = pasaCorriente;
 	}
 
-	public boolean isCorriente() {
-		return corriente;
+	public Poste(String cadena) {
+		String []trozos = cadena.split(" ");
+		numeroPoste = Integer.parseInt(trozos[0]);
+		pasaCorriente = (trozos[1].equals ("1"));
 	}
 
-	public void setCorriente(boolean corriente) {
-		this.corriente = corriente;
+	public int getNumeroPoste() {
+		return numeroPoste;
 	}
 
-	public int getNumPoste() {
-		return numPoste;
+	public void setNumeroPoste(int numeroPoste) {
+		this.numeroPoste = numeroPoste;
 	}
 
-	public void setNumPoste(int numPoste) {
-		this.numPoste = numPoste;
+	//public boolean isPasaCorriente() {
+	public boolean close() {
+		return pasaCorriente;
+	}
+
+	public void setPasaCorriente(boolean pasaCorriente) {
+		this.pasaCorriente = pasaCorriente;
 	}
 
 	@Override
 	public String toString() {
-		return "Poste [corriente=" + corriente + ", numPoste=" + numPoste + "]";
+		return "Poste [numeroPoste=" + numeroPoste + ", pasaCorriente=" + pasaCorriente + "]";
 	}
-
+	
+	
 }

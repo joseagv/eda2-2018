@@ -1,0 +1,4 @@
+PeorLineaConSolucion 12
+6822
+6821
+4474.0

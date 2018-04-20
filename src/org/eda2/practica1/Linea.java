@@ -1,82 +1,80 @@
 package org.eda2.practica1;
 
-import java.util.Arrays;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Scanner;
 
+/* supongo que la fuente de alimentacion esta al PRINCIPIO 
+ * de la linea
+ */
 public class Linea {
 
 	private String nombreLinea;
-	private int numPostes;
 	private double distancia;
+	private int numeroPostes;
 	private double longitud;
-	private Poste[] postes;
-
-	public Linea(String nombreLinea, int numPostes, double distancia, double longitud, Poste[] postes) {
-		super();
+	private ArrayList<Poste> postes;
+	
+	/*public Linea (String nombreLinea, double longitud, double distancia) {
 		this.nombreLinea = nombreLinea;
-		this.numPostes = numPostes;
-		this.distancia = distancia;
 		this.longitud = longitud;
-		this.postes = postes;
+		this.distancia = distancia;
+		numeroPostes = (int) (longitud / distancia) + 1;
+		postes = new Poste [numeroPostes];
+	}*/
+	
+	public Linea (String nombreFichero) {
+		try {
+			Scanner f = new Scanner (new File (nombreFichero));
+			nombreLinea = f.nextLine();
+			String cadena = f.nextLine();
+			distancia = Double.parseDouble(cadena);
+			cadena = f.nextLine();
+			numeroPostes = Integer.parseInt(cadena);
+			longitud = distancia*numeroPostes;
+			postes = new ArrayList<Poste>();
+			for (int i=0; i<numeroPostes; i++) {
+				cadena = f.nextLine();
+				postes.add(new Poste (cadena));
+			}
+			f.close ();
+		}
+		catch (IOException e) {
+			System.out.println("Error de lectura del fichero: "+nombreFichero);
+		}
+	}
+	
+	public Poste encontrarError () {
+		return encontrarError (0, numeroPostes-1);
+	}
+
+	public boolean close (int i) {
+		return postes.get(i).close();
+	}
+	
+	private Poste encontrarError(int ini, int fin) {
+		if (ini >= fin) {
+			//if (postes[ini].close())
+			if (close(ini))
+				return postes.get(ini+1);
+			return postes.get(ini);
+		}
+		int med = (ini + fin) / 2;
+		//if (postes[med].close()) {
+		if (close(med)) {
+			return encontrarError (med + 1, fin);
+		}
+		return encontrarError(ini, med-1);
 	}
 
 	public String getNombreLinea() {
+		// TODO Auto-generated method stub
 		return nombreLinea;
 	}
 
-	public void setNombreLinea(String nombreLinea) {
-		this.nombreLinea = nombreLinea;
+	public int getNumeroPostes() {
+		// TODO Auto-generated method stub
+		return numeroPostes;
 	}
-
-	public int getNumPostes() {
-		return numPostes;
-	}
-
-	public void setNumPostes(int numPostes) {
-		this.numPostes = numPostes;
-	}
-
-	public double getDistancia() {
-		return distancia;
-	}
-
-	public void setDistancia(double distancia) {
-		this.distancia = distancia;
-	}
-
-	public double getLongitud() {
-		return longitud;
-	}
-
-	public void setLongitud(double longitud) {
-		this.longitud = longitud;
-	}
-
-	public Poste[] getPostes() {
-		return postes;
-	}
-
-	public void setPostes(Poste[] postes) {
-		this.postes = postes;
-	}
-
-	@Override
-	public String toString() {
-		return "Linea [nombreLinea=" + nombreLinea + ", numPostes=" + numPostes + ", distancia=" + distancia
-				+ ", longitud=" + longitud + ", postes=" + Arrays.toString(postes) + "]";
-	}
-
-	public void close(int numPoste) {
-
-	}
-
-	public int buscarCorteRec() {
-		return numPostes;
-
-	}
-
-	public int buscarCorte() {
-		return numPostes;
-
-	}
-
 }
