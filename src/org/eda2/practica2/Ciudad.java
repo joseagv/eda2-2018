@@ -25,6 +25,7 @@ public class Ciudad {
 		ce = new Ubicacion (nCalles/2, nAvenidas/2);
 		lineas = new ArrayList<Linea>();
 		generarLineasCiudad ();
+		generarEstacionesCiudad();
 	}
 	
 	private void generarLineasCiudad () {
