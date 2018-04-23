@@ -15,6 +15,7 @@ public class Ciudad {
 	private Ubicacion em;
 	private Ubicacion ce;
 	private ArrayList<Linea> lineas;
+	private ArrayList<Estacion> estaciones;
 
 	public Ciudad (int nCalles, int nAvenidas) {
 		this.nCalles = nCalles;
@@ -32,14 +33,14 @@ public class Ciudad {
 		Linea linea;
 		
 		nA = (int) (TAMANIOAVENIDA / distanciaPostes); 
-		nC = (int) (TAMANIOCALLE / distanciaPostes); 
+		nC = (int) (TAMANIOCALLE / distanciaPostes);
 		for (int i=1; i<=4; i++) {
 			switch (i) {
 			case 1:
 				postes = new ArrayList<Poste> ();
 				//genero el trozo comun de las lineas 1
 				nPoste = 1;
-				avenida = nAvenidas / 2;
+				avenida = nAvenidas/2;
 				for (calle=1; calle<=nCalles/2; calle++) {
 					for (int j=1; j<=nC; j++) {
 						Ubicacion u = new Ubicacion (calle, avenida);
@@ -145,7 +146,7 @@ public class Ciudad {
 			case 3: //genero lineas 3 y 4
 				postes = new ArrayList<Poste> ();
 				postes2 = new ArrayList<Poste> ();
-				avenida = nAvenidas / 4;
+				avenida = Math.round(nAvenidas / 4);
 				avenida2 = nAvenidas - nAvenidas / 4;
 				nPoste = 1;
 				for(calle=1; calle<=nCalles; calle++) {
@@ -167,7 +168,7 @@ public class Ciudad {
 			case 4: //genero lineas 5 y 6
 				postes = new ArrayList<Poste> ();
 				postes2 = new ArrayList<Poste> ();
-				calle = nCalles / 4;
+				calle = Math.round(nCalles / 4);
 				calle2 = nCalles - nCalles / 4;
 				nPoste = 1;
 				for(avenida=1; avenida<=nAvenidas; avenida++) {
@@ -185,6 +186,149 @@ public class Ciudad {
 				lineas.add(linea);
 				linea = new Linea ("Linea6", postes2);
 				lineas.add(linea);
+				break;
+			}
+		}
+	}
+	
+	//Falta crear añadir el arraylist de estaciones, se estan sobreescribiendo
+	private void generarEstacionesCiudad () {
+		int calle, avenida, nC, nA, avenida2, calle2;
+		
+		nA = (int) (TAMANIOAVENIDA / distanciaPostes); 
+		nC = (int) (TAMANIOCALLE / distanciaPostes);
+		
+		//Generamos estacion central
+		Estacion central = new Estacion(nCalles/2, nAvenidas/2);
+		
+		//Generar estaciones partiendo de Ce
+		for (int i=1; i<=4; i++) {
+			switch (i) {
+			case 1:
+				//Genero estaciones partiendo de Ce hacia el sur
+				calle = nCalles/2;
+				avenida = nAvenidas/2;
+				for (int j=calle - 1; j>=1; j--) {
+					if(j%2 == 0){
+						Estacion e = new Estacion (calle, avenida);
+						estaciones.add(e);
+					}				
+				}
+				//Genero estaciones partiendo de Ce hacia el norte
+				for (int j=calle + 1; j<=nCalles; j++) {
+					if(j%2 == 0){
+						Estacion e = new Estacion (calle, avenida);
+						estaciones.add(e);
+					}				
+				}
+			
+				//Genero estaciones partiendo de Ce hacia el oeste
+				for (int j=avenida - 1; j<=1; j--) {
+					if(j%2 == 0){
+						Estacion e = new Estacion (calle, avenida);
+						estaciones.add(e);
+					}				
+				}
+	
+				//Genero estaciones partiendo de Ce hacia el este
+				for (int j=avenida + 1; j>=nAvenidas; j++) {
+					if(j%2 == 0){
+						Estacion e = new Estacion (calle, avenida);
+						estaciones.add(e);
+					}				
+				}
+				break;
+			
+			//Línea circular
+			case 2:
+				calle = nCalles/2;
+				avenida = nAvenidas/2;
+				Estacion e3 = new Estacion(nCalles ,avenida);
+				Estacion em = new Estacion(1 ,avenida);
+				estaciones.add(em);
+				estaciones.add(e3);
+				//Partimos de Em hacia la izq creando las estaciones cada dos avenidas en la calle 1 y n
+				for (int j=avenida - 2; j<=1; j--) {
+					if(j%2 == 0) {
+						Estacion e = new Estacion(1 ,avenida);
+						estaciones.add(e);
+						Estacion e2 = new Estacion(nCalles ,avenida);
+						estaciones.add(e2);
+					}
+					
+				}
+				//Partimos de Em hacia la der creando las estaciones cada dos avenidas en la calle 1 y n
+				for (int j=avenida + 2; j<=nAvenidas; j++) {
+					if(j%2 == 0) {
+						Estacion e = new Estacion(1 ,avenida);
+						estaciones.add(e);
+						Estacion e2 = new Estacion(nCalles ,avenida);
+						estaciones.add(e2);
+					}				
+				}
+				
+				//Partimos de la calle central hacia el sur creando las estaciones cada dos avenidas
+				for (int j=calle; j>=1; j--) {
+					if(j%2 == 0) {
+						Estacion e = new Estacion(j ,1);
+						estaciones.add(e);
+						Estacion e2 = new Estacion(j ,nAvenidas);
+						estaciones.add(e2);
+						
+					}				
+				}
+				
+				//Partimos de la calle central hacia el norte creando las estaciones cada dos avenidas
+				for (int j=calle; j<=nCalles; j++) {
+					if(j%2 == 0) {
+						Estacion e = new Estacion(j ,1);
+						estaciones.add(e);
+						Estacion e2 = new Estacion(j ,nAvenidas);
+						estaciones.add(e2);
+					}				
+				}
+				break;
+				
+				//Línea 3 y 4
+				case 3:
+					calle = 1;
+					avenida = Math.round(nAvenidas / 4);
+					avenida2 = nAvenidas - nAvenidas / 4;
+					//Línea 3 hacia el norte
+					for (int j=calle; j<=nCalles; j++) {
+						if(j%2 == 1) {
+							Estacion e = new Estacion(j ,avenida);
+							estaciones.add(e);
+						}					
+					}
+					//Línea 4 hacia el norte
+					for (int j=avenida2; j<=nCalles; j++) {
+						if(j%2 == 1) {
+							Estacion e = new Estacion(j ,avenida2);
+							estaciones.add(e);
+						}					
+					}
+				break;
+				
+				//Líneas 5 y 6
+				case 4: 
+					avenida = 1;
+					calle = Math.round(nCalles / 4);
+					calle2 = nAvenidas - nCalles / 4;
+					//Línea 5 hacia el este
+					for (int j=avenida; j<=nAvenidas; j++) {
+						if(j%2 == 1) {
+							Estacion e = new Estacion(calle ,j);
+							estaciones.add(e);
+						}					
+					}
+					//Línea 6 hacia el este
+					for (int j=avenida; j<=nAvenidas; j++) {
+						if(j%2 == 1) {
+							Estacion e = new Estacion(calle2 ,j);
+							estaciones.add(e);
+						}					
+					}
 				break;
 			}
 		}

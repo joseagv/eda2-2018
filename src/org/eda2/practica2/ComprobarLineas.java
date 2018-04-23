@@ -11,7 +11,7 @@ public class ComprobarLineas {
 		Poste poste = null;
 		double sumaDyV, sumaVZ;
 		Linea linea = null;
-		String directorio = System.getProperty("user.dir") + File.separator + "src" + File.separator + "datosCiudad2"
+		String directorio = System.getProperty("user.dir") + File.separator + "src" + File.separator + "datosCiudad"
 				+ File.separator;
 		System.out.println("Linea              Nº postes       Error        TiempoDyV         TiempoVZ");
 		String nombreFichero = directorio + "ciudad.txt";

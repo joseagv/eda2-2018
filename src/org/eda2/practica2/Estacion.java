@@ -1,13 +1,18 @@
 package org.eda2.practica2;
 
-public class Ubicacion implements Comparable {
+public class Estacion implements Comparable {
 
 	private int calle;
 	private int avenida;
 	
-	public Ubicacion(int calle, int avenida) {
+	public Estacion(int calle, int avenida) {
 		this.calle = calle;
 		this.avenida = avenida;
+	}
+	
+	public Estacion(Ubicacion ubi) {
+		this.calle = ubi.getCalle();
+		this.avenida = ubi.getAvenida();
 	}
 
 	public int getCalle() {
@@ -28,20 +33,20 @@ public class Ubicacion implements Comparable {
 
 	@Override
 	public String toString() {
-		return calle + " " + avenida;
+		return "Estacion: " + calle + " " + avenida;
 	}
 
 	@Override
 	public int compareTo(Object o) {
-		Ubicacion u = (Ubicacion)o;
-		if (this.calle < u.calle)
+		Estacion e = (Estacion)o;
+		if (this.calle < e.calle)
 			return -1;
-		if (this.calle > u.calle)
+		if (this.calle > e.calle)
 			return +1;
-		if (this.avenida < u.avenida)
+		if (this.avenida < e.avenida)
 			return -1;
-		if (this.avenida > u.avenida)
+		if (this.avenida > e.avenida)
 			return +1;
 		return 0;
-	}
+	}	
 }
