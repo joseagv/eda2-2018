@@ -28,7 +28,15 @@ public class Ubicacion implements Comparable {
 
 	@Override
 	public String toString() {
-		return calle + " " + avenida;
+		return calle + "," + avenida;
+	}
+	
+	public boolean equals (Object o) {
+		Ubicacion u = (Ubicacion) o;
+		if (calle == u.calle && avenida == u.avenida)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
@@ -44,4 +52,6 @@ public class Ubicacion implements Comparable {
 			return +1;
 		return 0;
 	}
+	
+	
 }

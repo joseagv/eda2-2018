@@ -1,6 +1,8 @@
 package org.eda2.practica2;
 
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -12,21 +14,57 @@ import java.util.TreeSet;
  */
 public class Grafo {
 
-	public static final double INFINITO = 1e60;
-	private TreeMap<Vertice, TreeMap<Vertice, Arista>> mapa;
-	//private double []distancia;
-	//private Vertice []previo;
+	public static final double MAX = Double.MAX_VALUE;
+	private TreeMap<Vertice, TreeMap<Vertice, Arista>> grafo;
 	private TreeMap<Vertice, Double> distancia;
 	private TreeMap<Vertice, Vertice> previo;
+	private int numeroCalles;
+	private int numeroAvenidas;
 	
-	
+	public Grafo (String nombreFichero) {
+		grafo = new TreeMap<Vertice, TreeMap<Vertice, Arista>> ();
+		try {
+			Scanner entrada = new Scanner (new File (nombreFichero));
+			numeroCalles = Integer.parseInt(entrada.nextLine());
+			numeroAvenidas = Integer.parseInt(entrada.nextLine());
+			//paso em y ce
+			entrada.nextLine();
+			entrada.nextLine();
+			//leo todas las aristas del grafo y las inserto
+			while (entrada.hasNextLine()) {
+				String linea = entrada.nextLine();
+				Scanner sc = new Scanner (linea);
+				int calle1 = sc.nextInt();
+				int avenida1 = sc.nextInt();
+				int calle2 = sc.nextInt();
+				int avenida2 = sc.nextInt();
+				int longitud = sc.nextInt();
+				String nom = sc.next();
+				Vertice origen = new Vertice ("", new Ubicacion(calle1,avenida1), false);
+				Vertice destino = new Vertice ("", new Ubicacion(calle2,avenida2), false);
+				Arista aris = new Arista (origen, destino, longitud, nom);
+				if ( ! grafo.containsKey(origen))
+					grafo.put(origen, new TreeMap<Vertice, Arista>());
+				grafo.get(origen).put(destino, aris);
+				Arista aris2 = new Arista (destino, origen, longitud, nom);
+				if ( ! grafo.containsKey(destino))
+					grafo.put(destino, new TreeMap<Vertice, Arista>());
+				grafo.get(destino).put(origen, aris);
+				
+			}
+			entrada.close();
+		}
+		catch (IOException e) {
+			
+		}
+	}
 	
 	public Arista getArista (Vertice origen, Vertice destino) {
-		if ( ! mapa.containsKey(origen))
+		if ( ! grafo.containsKey(origen))
 			return null;
-		if (! mapa.get(origen).containsKey(destino))
+		if (! grafo.get(origen).containsKey(destino))
 			return null;
-		return mapa.get(origen).get(destino);
+		return grafo.get(origen).get(destino);
 	}
 	
 	
@@ -91,10 +129,10 @@ public class Grafo {
 		s.add (origen);
 		distancia = new TreeMap<Vertice, Double> ();
 		previo = new TreeMap<Vertice, Vertice> ();
-		for (Vertice v : mapa.keySet()) {
+		for (Vertice v : grafo.keySet()) {
 			Arista a = getArista (origen, v);
 			if (a == null) {
-				distancia.put(v, INFINITO);
+				distancia.put(v, MAX);
 				previo.put(v, null);
 			}
 			else {
@@ -102,10 +140,11 @@ public class Grafo {
 				previo.put(v, origen);
 			}
 		}
-		TreeSet<Vertice> vmenoss = new TreeSet<Vertice> (mapa.keySet());
+		TreeSet<Vertice> vmenoss = new TreeSet<Vertice> (grafo.keySet());
 		vmenoss.remove(origen);
-		while (vmenoss.size() > 1) {
+		while (vmenoss.size() > 0) {
 			Vertice w = extraerVertice (vmenoss, distancia);
+			System.out.println("Despues de extraer: "+w);
 			s.add(w);
 			vmenoss.remove(w);
 			for (Vertice v : vmenoss) {
@@ -113,6 +152,7 @@ public class Grafo {
 				if (a != null) {
 					if (distancia.get(w) + a.getLongitud() < distancia.get(v)) {
 						distancia.put(v, distancia.get(w) + a.getLongitud());
+						System.out.println("Cambiando previo de "+v+" a "+w);
 						previo.put(v, w);
 					}
 				}
@@ -120,23 +160,80 @@ public class Grafo {
 		}
 	}
 
-	private Vertice extraerVertice(TreeSet<Vertice> vmenoss, 
+	private Vertice extraerVertice(TreeSet<Vertice> vMenos, 
 						TreeMap<Vertice, Double> distancia2) {
-		double min = INFINITO;
-		Vertice vertmin = null;
-		for (Vertice v : vmenoss) {
+		double min = MAX*2;
+		Vertice verticeMinimo = null;
+		for (Vertice v : vMenos) {
 			Double d = distancia2.get(v);
+			System.out.println("v = "+v+" con distancia: "+d);
 			if (d < min) {
 				min = d;
-				vertmin = v;
+				verticeMinimo = v;
 			}
 		}
-		return vertmin;
+		return verticeMinimo;
 	}
 	
-	public TreeMap<Vertice, ArrayList<Arista>> sacarCaminos(Vertice origen) {
+	public TreeMap<Vertice, ArrayList<Vertice>> sacarCaminos
+							(Vertice origen) {
 		dijkstra (origen);
-		TreeMap<Vertice, ArrayList<Arista>> salida = new TreeMap<Vertice, ArrayList<Arista>>();
-		return salida;		
+		TreeMap<Vertice, ArrayList<Vertice>> salida =
+					new TreeMap<Vertice, ArrayList<Vertice>>();
+		for (Vertice v : grafo.keySet()) {
+			//System.out.println("mirando: "+v);
+			if (v.equals(origen)) {
+				//System.out.println("comparando "+v+" con "+origen);
+				salida.put(v, null);
+			}
+			else {
+				ArrayList<Vertice> lista = new ArrayList<Vertice> ();
+				lista.add(origen);
+				//System.out.println("antes: "+lista);
+				hacerCamino (origen, v, lista);
+				lista.add(v);
+				//System.out.println("despues: "+lista);
+				salida.put(v, lista);
+			}
+		}
+		return salida;
+	}
+
+
+	private void hacerCamino(Vertice origen, Vertice v, 
+						ArrayList<Vertice> lista) {
+		System.out.println("camino de "+origen+" a "+v+" pasa por "+previo.get(v));
+		if (previo.get(v) == null || previo.get(v).equals(origen)) {
+			//lista.add(v);
+		}
+		else {
+			hacerCamino (origen, previo.get(v), lista);
+			lista.add(previo.get(v));
+		}
+	}
+	
+
+	public double calcularTiempo(ArrayList<Vertice> lista) {
+		double tiempo = 0, tManzana=Camino.TIEMPOESTACION, tIntercambio=Camino.TIEMPOINTERCAMBIO, 
+				tEstacion=Camino.TIEMPOMANZANA;
+		//estacion inicial: t3
+		tiempo = tiempo + tEstacion;
+		Vertice anterior = lista.get(0);
+		Arista aAnterior = null;
+		//para el resto de estaciones
+		for(int i=1; i<lista.size(); i++) {
+			Vertice actual = lista.get(i);
+			Arista aSiguiente = getArista(anterior, actual);
+			tiempo = tiempo + aSiguiente.getLongitud()*tManzana;
+			if (i < lista.size() - 1)
+				tiempo = tiempo + tEstacion;
+			if (aAnterior != null) {
+				if ( ! aAnterior.getNombreLinea().equals(aSiguiente.getNombreLinea()))
+					tiempo = tiempo + tIntercambio;
+			}
+			aAnterior = aSiguiente;
+			anterior = actual;
+		}
+		return tiempo;
 	}
 }

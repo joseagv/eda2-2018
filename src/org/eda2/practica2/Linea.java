@@ -77,7 +77,7 @@ public class Linea {
 		return encontrarErrorDyV(ini, med-1);
 	}
 	
-	public Poste encontrarErrorVZ () {
+	public Poste encontrarErrorVoraz () {
 		int posicion = 0;
 		Poste solucion = null;
 		while (solucion == null) {

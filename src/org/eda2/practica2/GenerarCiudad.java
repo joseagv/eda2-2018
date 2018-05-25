@@ -13,8 +13,8 @@ public class GenerarCiudad {
 	}
 	
 	private static Ciudad generarCiudad(String directorio) {
-		int nCalles = (int) (Math.random()*1000 + 1);
-		int nAvenidas = (int) (Math.random()*1000 + 1);
+		int nCalles = (int) (Math.random()*450 + 50);
+		int nAvenidas = (int) (Math.random()*450 + 50);
 		Ciudad ciudad = new Ciudad(nCalles, nAvenidas);
 		//String nombreCiudad = directorio + "Ciudad.txt";
 		ciudad.generarFallos ();

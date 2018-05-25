@@ -1,14 +1,14 @@
-734
-227
-3
-em 1 113
-ce 367 113
+411
+424
+4
+em 1,212
+ce 205,212
 8
-C:\Users\Fran\Desktop\WORKSPACES\EDA2-2018\eda2-2018\src\datosCiudad\Linea1a.txt
-C:\Users\Fran\Desktop\WORKSPACES\EDA2-2018\eda2-2018\src\datosCiudad\Linea1b.txt
-C:\Users\Fran\Desktop\WORKSPACES\EDA2-2018\eda2-2018\src\datosCiudad\Linea1c.txt
-C:\Users\Fran\Desktop\WORKSPACES\EDA2-2018\eda2-2018\src\datosCiudad\Linea2.txt
-C:\Users\Fran\Desktop\WORKSPACES\EDA2-2018\eda2-2018\src\datosCiudad\Linea3.txt
-C:\Users\Fran\Desktop\WORKSPACES\EDA2-2018\eda2-2018\src\datosCiudad\Linea4.txt
-C:\Users\Fran\Desktop\WORKSPACES\EDA2-2018\eda2-2018\src\datosCiudad\Linea5.txt
-C:\Users\Fran\Desktop\WORKSPACES\EDA2-2018\eda2-2018\src\datosCiudad\Linea6.txt
+Generada: Linea1a.txt
+Generada: Linea1b.txt
+Generada: Linea1c.txt
+Generada: Linea2.txt
+Generada: Linea3.txt
+Generada: Linea4.txt
+Generada: Linea5.txt
+Generada: Linea6.txt

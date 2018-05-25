@@ -8,42 +8,40 @@ import java.util.Scanner;
 public class Ciudad {
 
 	private static final double TAMANIOCALLE = 50;
-	private static final double TAMANIOAVENIDA = 75;
-	private int nCalles;
-	private int nAvenidas;
-	private int distanciaPostes;
-	private Ubicacion em;
-	private Ubicacion ce;
+	private static final double TAMANIOAVENIDA = 50;
+	private int numCalles;
+	private int numAvenidas;
+	private int distPostes;
+	private Ubicacion eM;
+	private Ubicacion cE;
 	private ArrayList<Linea> lineas;
-	private ArrayList<Estacion> estaciones;
 
 	public Ciudad (int nCalles, int nAvenidas) {
-		this.nCalles = nCalles;
-		this.nAvenidas = nAvenidas;
-		distanciaPostes = (int) (Math.random() * 5);
-		em = new Ubicacion (1, nAvenidas/2);
-		ce = new Ubicacion (nCalles/2, nAvenidas/2);
+		this.numCalles = nCalles;
+		this.numAvenidas = nAvenidas;
+		distPostes = (int) (Math.random() * 5);
+		eM = new Ubicacion (1, nAvenidas/2);
+		cE = new Ubicacion (nCalles/2, nAvenidas/2);
 		lineas = new ArrayList<Linea>();
 		generarLineasCiudad ();
-		generarEstacionesCiudad();
 	}
 	
 	private void generarLineasCiudad () {
-		int calle, avenida, nC, nA, nPoste, nPoste2, avenida2, calle2;
+		int calle, avenida, nCalles, nAvenidas, nPoste, nPoste2, avenida2, calle2;
 		ArrayList<Poste> postes, postes2;
 		Linea linea;
 		
-		nA = (int) (TAMANIOAVENIDA / distanciaPostes); 
-		nC = (int) (TAMANIOCALLE / distanciaPostes);
+		nAvenidas = (int) (TAMANIOAVENIDA / distPostes); 
+		nCalles = (int) (TAMANIOCALLE / distPostes); 
 		for (int i=1; i<=4; i++) {
 			switch (i) {
 			case 1:
 				postes = new ArrayList<Poste> ();
 				//genero el trozo comun de las lineas 1
 				nPoste = 1;
-				avenida = nAvenidas/2;
-				for (calle=1; calle<=nCalles/2; calle++) {
-					for (int j=1; j<=nC; j++) {
+				avenida = numAvenidas / 2;
+				for (calle=1; calle<=numCalles/2; calle++) {
+					for (int j=1; j<=nCalles; j++) {
 						Ubicacion u = new Ubicacion (calle, avenida);
 						Poste p = new Poste (nPoste, u, true);
 						postes.add(p);
@@ -52,10 +50,10 @@ public class Ciudad {
 				}
 				//genero el resto de la linea 1a
 				postes2 = new ArrayList<Poste> (postes);
-				calle = nCalles / 2;
+				calle = numCalles / 2;
 				nPoste2 = nPoste;
-				for (avenida = nAvenidas/2; avenida>=1; avenida--) {
-					for (int j=1; j<=nA; j++) {
+				for (avenida = numAvenidas/2; avenida>=1; avenida--) {
+					for (int j=1; j<=nAvenidas; j++) {
 						Ubicacion u = new Ubicacion (calle, avenida);
 						Poste p = new Poste (nPoste2, u, true);
 						postes2.add(p);
@@ -66,10 +64,10 @@ public class Ciudad {
 				lineas.add(linea);
 				//genero el resto de la linea 1b
 				postes2 = new ArrayList<Poste> (postes);
-				avenida = nAvenidas / 2;
+				avenida = numAvenidas / 2;
 				nPoste2 = nPoste;
-				for (calle=nCalles/2+1; calle<=nCalles; calle++) {
-					for (int j=1; j<=nC; j++) {
+				for (calle=numCalles/2+1; calle<=numCalles; calle++) {
+					for (int j=1; j<=nCalles; j++) {
 						Ubicacion u = new Ubicacion (calle, avenida);
 						Poste p = new Poste (nPoste2, u, true);
 						postes2.add(p);
@@ -80,10 +78,10 @@ public class Ciudad {
 				lineas.add(linea);
 				//genero el resto de la linea 1c
 				postes2 = new ArrayList<Poste> (postes);
-				calle = nCalles / 2;
+				calle = numCalles / 2;
 				nPoste2 = nPoste;
-				for (avenida = nAvenidas/2+1; avenida<=nAvenidas; avenida++) {
-					for (int j=1; j<=nA; j++) {
+				for (avenida = numAvenidas/2+1; avenida<=numAvenidas; avenida++) {
+					for (int j=1; j<=nAvenidas; j++) {
 						Ubicacion u = new Ubicacion (calle, avenida);
 						Poste p = new Poste (nPoste2, u, true);
 						postes2.add(p);
@@ -97,26 +95,26 @@ public class Ciudad {
 				postes = new ArrayList<Poste>();
 				nPoste = 1;
 				calle = 1;
-				for (avenida=nAvenidas/2+1; avenida<=nAvenidas; avenida++) {
-					for (int j=1; j<=nA; j++) {
+				for (avenida=numAvenidas/2+1; avenida<=numAvenidas; avenida++) {
+					for (int j=1; j<=nAvenidas; j++) {
 						Ubicacion u = new Ubicacion (calle, avenida);
 						Poste p = new Poste (nPoste, u, true);
 						postes.add(p);
 						nPoste++;
 					}
 				}
-				avenida = nAvenidas;
-				for (calle=1; calle<=nCalles; calle++) {
-					for (int j=1; j<=nC; j++) {
+				avenida = numAvenidas;
+				for (calle=1; calle<=numCalles; calle++) {
+					for (int j=1; j<=nCalles; j++) {
 						Ubicacion u = new Ubicacion (calle, avenida);
 						Poste p = new Poste (nPoste, u, true);
 						postes.add(p);
 						nPoste++;
 					}
 				}
-				calle = nCalles;
-				for (avenida=nAvenidas; avenida>=1; avenida--) {
-					for (int j=1; j<=nA; j++) {
+				calle = numCalles;
+				for (avenida=numAvenidas; avenida>=1; avenida--) {
+					for (int j=1; j<=nAvenidas; j++) {
 						Ubicacion u = new Ubicacion (calle, avenida);
 						Poste p = new Poste (nPoste, u, true);
 						postes.add(p);
@@ -124,8 +122,8 @@ public class Ciudad {
 					}
 				}
 				avenida = 1;
-				for (calle=nCalles; calle>=1; calle--) {
-					for (int j=1; j<=nC; j++) {
+				for (calle=numCalles; calle>=1; calle--) {
+					for (int j=1; j<=nCalles; j++) {
 						Ubicacion u = new Ubicacion (calle, avenida);
 						Poste p = new Poste (nPoste, u, true);
 						postes.add(p);
@@ -133,8 +131,8 @@ public class Ciudad {
 					}
 				}
 				calle = 1;
-				for (avenida=1; avenida<nAvenidas/2; avenida++) {
-					for (int j=1; j<=nA; j++) {
+				for (avenida=1; avenida<numAvenidas/2; avenida++) {
+					for (int j=1; j<=nAvenidas; j++) {
 						Ubicacion u = new Ubicacion (calle, avenida);
 						Poste p = new Poste (nPoste, u, true);
 						postes.add(p);
@@ -147,11 +145,11 @@ public class Ciudad {
 			case 3: //genero lineas 3 y 4
 				postes = new ArrayList<Poste> ();
 				postes2 = new ArrayList<Poste> ();
-				avenida = Math.round(nAvenidas / 4);
-				avenida2 = nAvenidas - nAvenidas / 4;
+				avenida = numAvenidas / 4;
+				avenida2 = numAvenidas - numAvenidas / 4;
 				nPoste = 1;
-				for(calle=1; calle<=nCalles; calle++) {
-					for (int j=1; j<=nC; j++) {
+				for(calle=1; calle<=numCalles; calle++) {
+					for (int j=1; j<=nCalles; j++) {
 						Ubicacion u = new Ubicacion (calle, avenida);
 						Poste p = new Poste (nPoste, u, true);
 						postes.add(p);
@@ -169,11 +167,11 @@ public class Ciudad {
 			case 4: //genero lineas 5 y 6
 				postes = new ArrayList<Poste> ();
 				postes2 = new ArrayList<Poste> ();
-				calle = Math.round(nCalles / 4);
-				calle2 = nCalles - nCalles / 4;
+				calle = numCalles / 4;
+				calle2 = numCalles - numCalles / 4;
 				nPoste = 1;
-				for(avenida=1; avenida<=nAvenidas; avenida++) {
-					for (int j=1; j<=nA; j++) {
+				for(avenida=1; avenida<=numAvenidas; avenida++) {
+					for (int j=1; j<=nAvenidas; j++) {
 						Ubicacion u = new Ubicacion (calle, avenida);
 						Poste p = new Poste (nPoste, u, true);
 						postes.add(p);
@@ -192,149 +190,6 @@ public class Ciudad {
 		}
 	}
 	
-	//Falta crear añadir el arraylist de estaciones, se estan sobreescribiendo
-	private void generarEstacionesCiudad () {
-		int calle, avenida, nC, nA, avenida2, calle2;
-		
-		nA = (int) (TAMANIOAVENIDA / distanciaPostes); 
-		nC = (int) (TAMANIOCALLE / distanciaPostes);
-		
-		//Generamos estacion central
-		Estacion central = new Estacion(nCalles/2, nAvenidas/2);
-		
-		//Generar estaciones partiendo de Ce
-		for (int i=1; i<=4; i++) {
-			switch (i) {
-			case 1:
-				//Genero estaciones partiendo de Ce hacia el sur
-				calle = nCalles/2;
-				avenida = nAvenidas/2;
-				for (int j=calle - 1; j>=1; j--) {
-					if(j%2 == 0){
-						Estacion e = new Estacion (calle, avenida);
-						estaciones.add(e);
-					}				
-				}
-				//Genero estaciones partiendo de Ce hacia el norte
-				for (int j=calle + 1; j<=nCalles; j++) {
-					if(j%2 == 0){
-						Estacion e = new Estacion (calle, avenida);
-						estaciones.add(e);
-					}				
-				}
-			
-				//Genero estaciones partiendo de Ce hacia el oeste
-				for (int j=avenida - 1; j<=1; j--) {
-					if(j%2 == 0){
-						Estacion e = new Estacion (calle, avenida);
-						estaciones.add(e);
-					}				
-				}
-	
-				//Genero estaciones partiendo de Ce hacia el este
-				for (int j=avenida + 1; j>=nAvenidas; j++) {
-					if(j%2 == 0){
-						Estacion e = new Estacion (calle, avenida);
-						estaciones.add(e);
-					}				
-				}
-				break;
-			
-			//Línea circular
-			case 2:
-				calle = nCalles/2;
-				avenida = nAvenidas/2;
-				Estacion e3 = new Estacion(nCalles ,avenida);
-				Estacion em = new Estacion(1 ,avenida);
-				estaciones.add(em);
-				estaciones.add(e3);
-				//Partimos de Em hacia la izq creando las estaciones cada dos avenidas en la calle 1 y n
-				for (int j=avenida - 2; j<=1; j--) {
-					if(j%2 == 0) {
-						Estacion e = new Estacion(1 ,avenida);
-						estaciones.add(e);
-						Estacion e2 = new Estacion(nCalles ,avenida);
-						estaciones.add(e2);
-					}
-					
-				}
-				//Partimos de Em hacia la der creando las estaciones cada dos avenidas en la calle 1 y n
-				for (int j=avenida + 2; j<=nAvenidas; j++) {
-					if(j%2 == 0) {
-						Estacion e = new Estacion(1 ,avenida);
-						estaciones.add(e);
-						Estacion e2 = new Estacion(nCalles ,avenida);
-						estaciones.add(e2);
-					}				
-				}
-				
-				//Partimos de la calle central hacia el sur creando las estaciones cada dos avenidas
-				for (int j=calle; j>=1; j--) {
-					if(j%2 == 0) {
-						Estacion e = new Estacion(j ,1);
-						estaciones.add(e);
-						Estacion e2 = new Estacion(j ,nAvenidas);
-						estaciones.add(e2);
-						
-					}				
-				}
-				
-				//Partimos de la calle central hacia el norte creando las estaciones cada dos avenidas
-				for (int j=calle; j<=nCalles; j++) {
-					if(j%2 == 0) {
-						Estacion e = new Estacion(j ,1);
-						estaciones.add(e);
-						Estacion e2 = new Estacion(j ,nAvenidas);
-						estaciones.add(e2);
-					}				
-				}
-				break;
-				
-				//Línea 3 y 4
-				case 3:
-					calle = 1;
-					avenida = Math.round(nAvenidas / 4);
-					avenida2 = nAvenidas - nAvenidas / 4;
-					//Línea 3 hacia el norte
-					for (int j=calle; j<=nCalles; j++) {
-						if(j%2 == 1) {
-							Estacion e = new Estacion(j ,avenida);
-							estaciones.add(e);
-						}					
-					}
-					//Línea 4 hacia el norte
-					for (int j=avenida2; j<=nCalles; j++) {
-						if(j%2 == 1) {
-							Estacion e = new Estacion(j ,avenida2);
-							estaciones.add(e);
-						}					
-					}
-				break;
-				
-				//Líneas 5 y 6
-				case 4: 
-					avenida = 1;
-					calle = Math.round(nCalles / 4);
-					calle2 = nAvenidas - nCalles / 4;
-					//Línea 5 hacia el este
-					for (int j=avenida; j<=nAvenidas; j++) {
-						if(j%2 == 1) {
-							Estacion e = new Estacion(calle ,j);
-							estaciones.add(e);
-						}					
-					}
-					//Línea 6 hacia el este
-					for (int j=avenida; j<=nAvenidas; j++) {
-						if(j%2 == 1) {
-							Estacion e = new Estacion(calle2 ,j);
-							estaciones.add(e);
-						}					
-					}
-				break;
-			}
-		}
-	}
-	
 	public void generarFallos () {
 		for (int i=0; i<lineas.size(); i++) {
 			lineas.get(i).generarFallo();
@@ -346,16 +201,16 @@ public class Ciudad {
 		try {
 			BufferedWriter f = new BufferedWriter (new 
 					FileWriter (new File (nombreFichero)));
-			f.write(nCalles+"\n");
-			f.write(nAvenidas+"\n");
+			f.write(numCalles+"\n");
+			f.write(numAvenidas+"\n");
 			//f.write(String.format(Locale.US, "%.2f", distanciaPostes)+"\n");
-			f.write(distanciaPostes+"\n");
-			f.write("em "+em+"\n");
-			f.write("ce "+ce+"\n");
+			f.write(distPostes+"\n");
+			f.write("em "+eM+"\n");
+			f.write("ce "+cE+"\n");
 			f.write(lineas.size()+"\n");
 			for (int i=0; i<lineas.size(); i++) {
 				Linea l = lineas.get(i);
-				String nombre = directorio + l.getNombreLinea()+".txt";
+				String nombre = "Generada: " + l.getNombreLinea()+".txt";
 				f.write(nombre+"\n");
 			}
 			f.close();
@@ -387,16 +242,16 @@ public class Ciudad {
 	public Ciudad(String nombreFichero) {
 		try {
 			Scanner f = new Scanner (new File(nombreFichero));
-			nCalles = Integer.parseInt(f.nextLine());
-			nAvenidas = Integer.parseInt(f.nextLine());
-			distanciaPostes = Integer.parseInt(f.nextLine());
+			numCalles = Integer.parseInt(f.nextLine());
+			numAvenidas = Integer.parseInt(f.nextLine());
+			distPostes = Integer.parseInt(f.nextLine());
 			String cadena = f.nextLine();
 			String []trozos = cadena.split(" ");
-			em = new Ubicacion (Integer.parseInt(trozos[1]),
+			eM = new Ubicacion (Integer.parseInt(trozos[1]),
 								Integer.parseInt(trozos[2]));
 			cadena = f.nextLine();
 			trozos = cadena.split(" ");
-			ce = new Ubicacion (Integer.parseInt(trozos[1]),
+			cE = new Ubicacion (Integer.parseInt(trozos[1]),
 								Integer.parseInt(trozos[2]));
 			lineas = new ArrayList<Linea> ();
 			int numLineas = Integer.parseInt(f.nextLine());

@@ -10,12 +10,19 @@ package org.eda2.practica2;
 
 public class Arista {
 
-	public static double tiempoAris = 4;
+	public static double tiempoArista = 5;
 	private Vertice origen;
 	private Vertice destino;
 	private double longitud;
 	private String nombreLinea; 
 	
+	public Arista(Vertice origen, Vertice destino, double longitud, String nombreLinea) {
+		this.origen = origen;
+		this.destino = destino;
+		this.longitud = longitud;
+		this.nombreLinea = nombreLinea;
+	}
+
 	public boolean equals (Object obj) {
 		Arista a = (Arista) obj;
 		return this.origen.equals(a.origen) &&

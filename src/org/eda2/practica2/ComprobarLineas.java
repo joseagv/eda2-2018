@@ -27,7 +27,7 @@ public class ComprobarLineas {
 				tiempoDyV = despues - antes;
 				sumaDyV = sumaDyV + tiempoDyV;
 				antes = System.nanoTime();
-				poste = linea.encontrarErrorVZ();
+				poste = linea.encontrarErrorVoraz();
 				despues = System.nanoTime();
 				tiempoVZ = despues - antes;
 				sumaVZ = sumaVZ + tiempoVZ;
