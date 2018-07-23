@@ -14,15 +14,17 @@ import java.util.TreeSet;
  */
 public class Grafo {
 
-	public static final double MAX = Double.MAX_VALUE;
-	private TreeMap<Vertice, TreeMap<Vertice, Arista>> grafo;
+	public static final double INFINITO = 1e20;
+	private TreeMap<Vertice, TreeMap<Vertice, Arista>> mapa;
+	//private double []distancia;
+	//private Vertice []previo;
 	private TreeMap<Vertice, Double> distancia;
 	private TreeMap<Vertice, Vertice> previo;
 	private int numeroCalles;
 	private int numeroAvenidas;
 	
 	public Grafo (String nombreFichero) {
-		grafo = new TreeMap<Vertice, TreeMap<Vertice, Arista>> ();
+		mapa = new TreeMap<Vertice, TreeMap<Vertice, Arista>> ();
 		try {
 			Scanner entrada = new Scanner (new File (nombreFichero));
 			numeroCalles = Integer.parseInt(entrada.nextLine());
@@ -34,22 +36,22 @@ public class Grafo {
 			while (entrada.hasNextLine()) {
 				String linea = entrada.nextLine();
 				Scanner sc = new Scanner (linea);
-				int calle1 = sc.nextInt();
-				int avenida1 = sc.nextInt();
-				int calle2 = sc.nextInt();
-				int avenida2 = sc.nextInt();
-				int longitud = sc.nextInt();
+				int c1 = sc.nextInt();
+				int a1 = sc.nextInt();
+				int c2 = sc.nextInt();
+				int a2 = sc.nextInt();
+				int lon = sc.nextInt();
 				String nom = sc.next();
-				Vertice origen = new Vertice ("", new Ubicacion(calle1,avenida1), false);
-				Vertice destino = new Vertice ("", new Ubicacion(calle2,avenida2), false);
-				Arista aris = new Arista (origen, destino, longitud, nom);
-				if ( ! grafo.containsKey(origen))
-					grafo.put(origen, new TreeMap<Vertice, Arista>());
-				grafo.get(origen).put(destino, aris);
-				Arista aris2 = new Arista (destino, origen, longitud, nom);
-				if ( ! grafo.containsKey(destino))
-					grafo.put(destino, new TreeMap<Vertice, Arista>());
-				grafo.get(destino).put(origen, aris);
+				Vertice origen = new Vertice ("", new Ubicacion(c1,a1), false);
+				Vertice destino = new Vertice ("", new Ubicacion(c2,a2), false);
+				Arista aris = new Arista (origen, destino, lon, nom);
+				if ( ! mapa.containsKey(origen))
+					mapa.put(origen, new TreeMap<Vertice, Arista>());
+				mapa.get(origen).put(destino, aris);
+				Arista aris2 = new Arista (destino, origen, lon, nom);
+				if ( ! mapa.containsKey(destino))
+					mapa.put(destino, new TreeMap<Vertice, Arista>());
+				mapa.get(destino).put(origen, aris);
 				
 			}
 			entrada.close();
@@ -60,11 +62,11 @@ public class Grafo {
 	}
 	
 	public Arista getArista (Vertice origen, Vertice destino) {
-		if ( ! grafo.containsKey(origen))
+		if ( ! mapa.containsKey(origen))
 			return null;
-		if (! grafo.get(origen).containsKey(destino))
+		if (! mapa.get(origen).containsKey(destino))
 			return null;
-		return grafo.get(origen).get(destino);
+		return mapa.get(origen).get(destino);
 	}
 	
 	
@@ -126,13 +128,14 @@ public class Grafo {
 
 	private void dijkstra (Vertice origen) {
 		TreeSet<Vertice> s = new TreeSet<Vertice>();
+		//inicializacion
 		s.add (origen);
 		distancia = new TreeMap<Vertice, Double> ();
 		previo = new TreeMap<Vertice, Vertice> ();
-		for (Vertice v : grafo.keySet()) {
+		for (Vertice v : mapa.keySet()) {
 			Arista a = getArista (origen, v);
 			if (a == null) {
-				distancia.put(v, MAX);
+				distancia.put(v, INFINITO);
 				previo.put(v, null);
 			}
 			else {
@@ -140,7 +143,8 @@ public class Grafo {
 				previo.put(v, origen);
 			}
 		}
-		TreeSet<Vertice> vmenoss = new TreeSet<Vertice> (grafo.keySet());
+		//algoritmo dijkstra propiamente dicho
+		TreeSet<Vertice> vmenoss = new TreeSet<Vertice> (mapa.keySet());
 		vmenoss.remove(origen);
 		while (vmenoss.size() > 0) {
 			Vertice w = extraerVertice (vmenoss, distancia);
@@ -160,27 +164,27 @@ public class Grafo {
 		}
 	}
 
-	private Vertice extraerVertice(TreeSet<Vertice> vMenos, 
+	private Vertice extraerVertice(TreeSet<Vertice> vmenoss, 
 						TreeMap<Vertice, Double> distancia2) {
-		double min = MAX*2;
-		Vertice verticeMinimo = null;
-		for (Vertice v : vMenos) {
+		double min = INFINITO*2;
+		Vertice vertmin = null;
+		for (Vertice v : vmenoss) {
 			Double d = distancia2.get(v);
 			System.out.println("v = "+v+" con distancia: "+d);
 			if (d < min) {
 				min = d;
-				verticeMinimo = v;
+				vertmin = v;
 			}
 		}
-		return verticeMinimo;
+		return vertmin;
 	}
 	
-	public TreeMap<Vertice, ArrayList<Vertice>> sacarCaminos
+	public TreeMap<Vertice, ArrayList<Vertice>> obtenerCaminos
 							(Vertice origen) {
 		dijkstra (origen);
 		TreeMap<Vertice, ArrayList<Vertice>> salida =
 					new TreeMap<Vertice, ArrayList<Vertice>>();
-		for (Vertice v : grafo.keySet()) {
+		for (Vertice v : mapa.keySet()) {
 			//System.out.println("mirando: "+v);
 			if (v.equals(origen)) {
 				//System.out.println("comparando "+v+" con "+origen);
@@ -209,27 +213,27 @@ public class Grafo {
 		else {
 			hacerCamino (origen, previo.get(v), lista);
 			lista.add(previo.get(v));
+			//hacerCamino (previo.get(v), v, lista);
 		}
 	}
 	
 
 	public double calcularTiempo(ArrayList<Vertice> lista) {
-		double tiempo = 0, tManzana=Camino.TIEMPOESTACION, tIntercambio=Camino.TIEMPOINTERCAMBIO, 
-				tEstacion=Camino.TIEMPOMANZANA;
+		double tiempo = 0, t1=4, t2=7, t3=5;
 		//estacion inicial: t3
-		tiempo = tiempo + tEstacion;
+		tiempo = tiempo + t3;
 		Vertice anterior = lista.get(0);
 		Arista aAnterior = null;
 		//para el resto de estaciones
 		for(int i=1; i<lista.size(); i++) {
 			Vertice actual = lista.get(i);
 			Arista aSiguiente = getArista(anterior, actual);
-			tiempo = tiempo + aSiguiente.getLongitud()*tManzana;
+			tiempo = tiempo + aSiguiente.getLongitud()*t1;
 			if (i < lista.size() - 1)
-				tiempo = tiempo + tEstacion;
+				tiempo = tiempo + t3;
 			if (aAnterior != null) {
 				if ( ! aAnterior.getNombreLinea().equals(aSiguiente.getNombreLinea()))
-					tiempo = tiempo + tIntercambio;
+					tiempo = tiempo + t2;
 			}
 			aAnterior = aSiguiente;
 			anterior = actual;

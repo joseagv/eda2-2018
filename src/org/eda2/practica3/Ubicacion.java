@@ -1,4 +1,4 @@
-package org.eda2.practica2;
+package org.eda2.practica3;
 
 public class Ubicacion implements Comparable {
 
@@ -28,7 +28,7 @@ public class Ubicacion implements Comparable {
 
 	@Override
 	public String toString() {
-		return calle + " " + avenida;
+		return calle + "," + avenida;
 	}
 	
 	public boolean equals (Object o) {

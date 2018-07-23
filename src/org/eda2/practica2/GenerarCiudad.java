@@ -1,5 +1,4 @@
 package org.eda2.practica2;
-
 import java.io.*;
 import java.util.Locale;
 
@@ -21,7 +20,4 @@ public class GenerarCiudad {
 		ciudad.guardarCiudad (directorio);
 		return ciudad;
 	}
-
-
-
 }
