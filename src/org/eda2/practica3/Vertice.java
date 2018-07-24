@@ -1,6 +1,5 @@
 package org.eda2.practica3;
 
-/* la clase vertice representa una estacion del metro */
 
 public class Vertice implements Comparable {
 
@@ -39,14 +38,14 @@ public class Vertice implements Comparable {
 	}
 
 	public boolean equals (Object obj) {
-		Vertice v = (Vertice) obj;
-		return this.ubicacion.equals(v.ubicacion);
+		Vertice vertice = (Vertice) obj;
+		return this.ubicacion.equals(vertice.ubicacion);
 	}
 	
 	@Override
 	public int compareTo(Object obj) {
-		Vertice v = (Vertice) obj;
-		return this.ubicacion.compareTo(v.ubicacion);
+		Vertice vertice = (Vertice) obj;
+		return this.ubicacion.compareTo(vertice.ubicacion);
 	}
 	
 	public String toString () {

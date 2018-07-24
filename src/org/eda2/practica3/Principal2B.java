@@ -1,4 +1,4 @@
-ackage org.eda2.practica3;
+package org.eda2.practica3;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,11 +10,11 @@ public class Principal2B {
 	public static void main(String[] args) {
 		String directorio = System.getProperty("user.dir")
 				+File.separator + "src"+File.separator
-				+"datosB" + File.separator;
-		String nombreFichero = directorio + "copia.txt";
-		TablaPrecio grafo = new TablaPrecio (nombreFichero);
-		grafo.escribirTablas();
-		/*Vertice origen = new Vertice("em", new Ubicacion(1,6), false);
+				+"datosCiudad" + File.separator;
+		String nombreFichero = directorio + "ciudad2B.txt";
+		Grafo grafo = new Grafo (nombreFichero);
+		
+		Vertice origen = new Vertice("em", new Ubicacion(1,6), false);
 		TreeMap<Vertice, ArrayList<Vertice>> caminos =
 						grafo.sacarCaminos(origen);
 		System.out.println("Caminos desde "+origen);
@@ -27,7 +27,7 @@ public class Principal2B {
 					System.out.print(v+"  ");
 				System.out.println(" ==> "+tiempo+" minutos");
 			}
-		}*/
+		}
 	}
 
 
