@@ -48,12 +48,12 @@ public class TablaPrecio {
 	}
 	
 	public String toString () {
-		String cadena = "[";
+		String cadena = "";
 		for (int i=0; i<precio.length; i++) {
-			cadena = cadena + String.format("%.2f", precio[i]);
+			cadena = cadena + "\t\t" + String.format("%.2f", precio[i]);
 			if (i < precio.length-1)
-				cadena = cadena +", ";
+				cadena = cadena +" € ";
 		}
-		return cadena + "]";
+		return cadena + " €";
 	}
 }
