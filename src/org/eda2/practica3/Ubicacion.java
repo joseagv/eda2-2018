@@ -33,7 +33,9 @@ public class Ubicacion implements Comparable {
 	
 	public boolean equals (Object o) {
 		Ubicacion u = (Ubicacion) o;
-		if (calle == u.calle && avenida == u.avenida)
+		boolean mismaCalle = calle == u.calle;
+		boolean mismaAvenida  = avenida == u.avenida;
+		if (mismaCalle && mismaAvenida)
 			return true;
 		else
 			return false;

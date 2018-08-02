@@ -75,30 +75,6 @@ public class Grafo {
 		return mapa.get(origen).get(destino);
 	}
 
-	/**********
-	 * public void Dijkistra (Vertice origen) { ArrayList<Vertice> vertices = new
-	 * ArrayList<Vertice>(mapa.keySet()); TreeSet<Vertice> s = new
-	 * TreeSet<Vertice>(); s.add (origen); distancia = new double [mapa.size()];
-	 * previo = new Vertice[mapa.size()]; for (int i=0; i<vertices.size(); i++) {
-	 * Arista a = getArista (origen, vertices.get(i)); if (a == null) { distancia[i]
-	 * = INFINITO; previo[i] = null; } else { distancia[i] = a.getLongitud();
-	 * previo[i] = origen; } } TreeSet<Vertice> vmenoss = new
-	 * TreeSet<Vertice>(vertices); vmenoss.remove(origen); for (int i=1;
-	 * i<=vertices.size()-2; i++) { Vertice w = extraerVertice (vertices, vmenoss,
-	 * distancia); s.add(w); vmenoss.remove(w); for (Vertice v : vmenoss) { Arista a
-	 * = getArista (w, v); if (a != null) { int posw = vertices.indexOf(w); int posv
-	 * = vertices.indexOf(v); if (distancia[posw] + a.getLongitud() <
-	 * distancia[posv]) { distancia[posv] = distancia[posw] + a.getLongitud();
-	 * previo[posv] = w; } } } } }
-	 * 
-	 * private Vertice extraerVertice(ArrayList<Vertice> vertices, TreeSet<Vertice>
-	 * vmenoss, double[] distancia2) { double min = Double.MAX_VALUE; Vertice
-	 * vertmin = null; for (Vertice v : vmenoss) { int pos = vertices.indexOf(v); if
-	 * (distancia2[pos] < min) { min = distancia2[pos]; vertmin = v; } } return
-	 * vertmin; }
-	 *****************************/
-
-	// OTRA FORMA
 
 	private void dijkstra(Vertice origen) {
 		TreeSet<Vertice> s = new TreeSet<Vertice>();
