@@ -78,16 +78,19 @@ public class Recorridos extends Grafo {
 			}
 			origen = automatizadas.get(n);
 		}
-		System.out.println("\nOrigen = " + origen + "\n");
+		System.out.println("RUTA ESTACIONES NO AUTOMATIZADAS");
+		System.out.println("Origen = " + origen);
 		ArrayList<VerticeMaquinas> solNoAuto = calcularRecorrido(origen, noAutomatizadas);
 		solucion.addAll(solNoAuto);
-		System.out.println("\nSolucion parcial: " + solucion);
+		System.out.println("\nSolucion parcial no automatizadas: " + solucion);
 		// soa = null;
 		// voa = Double.MAX_VALUE;
 		origen = solNoAuto.get(solNoAuto.size() - 1);
-		System.out.println("\nOrigen = " + origen);
+		System.out.println("\nRUTA ESTACIONES AUTOMATIZADAS");
+		System.out.println("Origen = " + origen);
 		ArrayList<VerticeMaquinas> solAuto = calcularRecorrido(origen, automatizadas);
 		solucion.addAll(solAuto);
+		System.out.println("\nRUTA ÓPTIMA");
 		return solucion;
 	}
 
@@ -113,7 +116,7 @@ public class Recorridos extends Grafo {
 					if (tiempo < tiempoTotal) {
 						tiempoTotal = tiempo;
 						recorridos = new ArrayList<VerticeMaquinas>(s);
-						System.out.println("y cambio "+recorridos);
+						System.out.println("y cambio "+recorridos + "--> tiempo: " + tiempoTotal + " min");
 					}
 				}
 				else {

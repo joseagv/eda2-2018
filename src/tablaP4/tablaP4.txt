@@ -1,1 +1,23 @@
-Grafo leido con 19 verticesEstaciones Automatizadas: 13Estaciones No Automatizadas: 6
+Grafo leido con 19 vertices
+Estaciones Automatizadas: 13
+Estaciones No Automatizadas: 6
+RUTA ÓPTIMA
+(Ca 1, Av 3) -> Estación: 1
+(Ca 1, Av 6) -> Estación: 3
+(Ca 4, Av 6) -> Estación: 15
+(Ca 3, Av 9) -> Estación: 11
+(Ca 4, Av 9) -> Estación: 17
+(Ca 4, Av 11) -> Estación: 18
+(Ca 2, Av 11) -> Estación: 9
+(Ca 1, Av 10) -> Estación: 6
+(Ca 1, Av 9) -> Estación: 5
+(Ca 1, Av 8) -> Estación: 4
+(Ca 2, Av 6) -> Estación: 8
+(Ca 1, Av 4) -> Estación: 2
+(Ca 1, Av 2) -> Estación: 0
+(Ca 2, Av 1) -> Estación: 7
+(Ca 4, Av 1) -> Estación: 12
+(Ca 3, Av 3) -> Estación: 10
+(Ca 4, Av 3) -> Estación: 13
+(Ca 4, Av 5) -> Estación: 14
+(Ca 4, Av 7) -> Estación: 16

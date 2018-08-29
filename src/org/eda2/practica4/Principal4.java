@@ -33,29 +33,26 @@ public class Principal4 {
 		System.out.println();
 		System.out.println("Grafo leido con "+grafo.numeroVertices+" vertices");
 		String resultado = "Grafo leido con "+grafo.numeroVertices+" vertices";
-		bw.write(resultado);
+		bw.write(resultado + "\n");
 
 		System.out.println("Estaciones Automatizadas: "+grafo.getNumAutomatizadas());
-		bw.write("Estaciones Automatizadas: "+grafo.getNumAutomatizadas());
+		bw.write("Estaciones Automatizadas: "+grafo.getNumAutomatizadas() + "\n");
 
 		System.out.println("Estaciones No Automatizadas: "+grafo.getNumNoAutomatizadas() + "\n");
 		bw.write("Estaciones No Automatizadas: "+grafo.getNumNoAutomatizadas() + "\n");
+		bw.write("RUTA ÓPTIMA\n");
 
 		antes = System.nanoTime();
 		ArrayList<VerticeMaquinas> sol = grafo.calcularRecorridos();
-		for (VerticeMaquinas v : sol) {
+		for (VerticeMaquinas v: sol) {
 			System.out.println(v);
+			bw.write(v.toString() + "\n");
 		}
 		despues = System.nanoTime();
 		tiempo = despues - antes;
 		System.out.println();
 		System.out.println("Tiempo que se tarda en calcular las rutas óptimas:" + tiempo + " nanosegundos");
 		System.out.println("Tiempo en segundos:" + tiempo/1000000000 + " segundos");
-		/*
-		ArrayList<VerticeMaquinas> solu = grafo.calcularRecorridos();
-		for (VerticeMaquinas v : solu) {
-			bw.write(v.toString());
-		}*/
 		bw.close();
 	}
 }
