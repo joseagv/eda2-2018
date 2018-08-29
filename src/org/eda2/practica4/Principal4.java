@@ -20,37 +20,42 @@ public class Principal4 {
 		String directorio2 = System.getProperty("user.dir")
 				+File.separator + "src"+File.separator
 				+"tablaP4" + File.separator;
-		
-		String nombreFichero = directorio + "copia4.txt";
+
+		String nombreFichero = directorio + "grafo.txt";
 		String nombreMaquina = directorio + "maquina4.txt";
 		String nombreTabla = directorio2 + "tablaP4.txt";
-		
+		long antes, despues, tiempo;
+
 		File f = new File(nombreTabla);
 		BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-		Recorridos grafo = new Recorridos (nombreFichero, nombreMaquina);
-		
+		Recorridos grafo = new Recorridos(nombreFichero, nombreMaquina);
+
+		System.out.println();
 		System.out.println("Grafo leido con "+grafo.numeroVertices+" vertices");
 		String resultado = "Grafo leido con "+grafo.numeroVertices+" vertices";
 		bw.write(resultado);
-		
-		System.out.println(" y con "+grafo.getNumAutomatizadas()+
-				" estaciones automatizadas y "+
-				grafo.getNumNoAutomatizadas()+" estaciones no automatizadas");
-		ArrayList<VerticeR> sol = grafo.calcularRecorridos ();
-		for (VerticeR v : sol) {
+
+		System.out.println("Estaciones Automatizadas: "+grafo.getNumAutomatizadas());
+		bw.write("Estaciones Automatizadas: "+grafo.getNumAutomatizadas());
+
+		System.out.println("Estaciones No Automatizadas: "+grafo.getNumNoAutomatizadas() + "\n");
+		bw.write("Estaciones No Automatizadas: "+grafo.getNumNoAutomatizadas() + "\n");
+
+		antes = System.nanoTime();
+		ArrayList<VerticeMaquinas> sol = grafo.calcularRecorridos();
+		for (VerticeMaquinas v : sol) {
 			System.out.println(v);
 		}
-		resultado = " y con "+grafo.getNumAutomatizadas()+
-				" estaciones automatizadas y "+
-				grafo.getNumNoAutomatizadas()+" estaciones no automatizadas\n";
-		bw.write(resultado);	
-				
-		ArrayList<VerticeR> solu = grafo.calcularRecorridos ();
-		for (VerticeR v : solu) {
+		despues = System.nanoTime();
+		tiempo = despues - antes;
+		System.out.println();
+		System.out.println("Tiempo que se tarda en calcular las rutas óptimas:" + tiempo + " nanosegundos");
+		System.out.println("Tiempo en segundos:" + tiempo/1000000000 + " segundos");
+		/*
+		ArrayList<VerticeMaquinas> solu = grafo.calcularRecorridos();
+		for (VerticeMaquinas v : solu) {
 			bw.write(v.toString());
-		};
+		}*/
 		bw.close();
 	}
-
-
 }

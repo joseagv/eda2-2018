@@ -1,7 +1,7 @@
 package org.eda2.practica4;
 
 
-import org.eda2.practica4.Datos.TipoEstacion;
+import org.eda2.practica4.Maquinas.TipoEstacion;
 
 /* la clase vertice representa una estacion del metro */
 

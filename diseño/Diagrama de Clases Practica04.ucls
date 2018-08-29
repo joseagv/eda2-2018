@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.13" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="org.eda2.practica4.VerticeMaquinas" project="eda2-2018" 
+    file="/eda2-2018/src/org/eda2/practica4/VerticeMaquinas.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="795" y="45"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="org.eda2.practica4.Arista" project="eda2-2018" 
+    file="/eda2-2018/src/org/eda2/practica4/Arista.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="114" y="49"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="org.eda2.practica4.Principal4" project="eda2-2018" 
+    file="/eda2-2018/src/org/eda2/practica4/Principal4.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="401" y="601"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="org.eda2.practica4.Maquinas" project="eda2-2018" 
+    file="/eda2-2018/src/org/eda2/practica4/Maquinas.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1146" y="-29"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="org.eda2.practica4.Recorridos" project="eda2-2018" 
+    file="/eda2-2018/src/org/eda2/practica4/Recorridos.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="233" y="353"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="6" language="java" name="org.eda2.practica4.Maquinas.TipoEstacion" project="eda2-2018" 
+    file="/eda2-2018/src/org/eda2/practica4/Maquinas.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1013" y="363"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="7" language="java" name="org.eda2.practica4.TablaPrecio" project="eda2-2018" 
+    file="/eda2-2018/src/org/eda2/practica4/TablaPrecio.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="104" y="589"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="org.eda2.practica4.Vertice" project="eda2-2018" 
+    file="/eda2-2018/src/org/eda2/practica4/Vertice.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="431" y="28"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="org.eda2.practica4.Grafo" project="eda2-2018" 
+    file="/eda2-2018/src/org/eda2/practica4/Grafo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="759" y="527"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="org.eda2.practica4.Ubicacion" project="eda2-2018" 
+    file="/eda2-2018/src/org/eda2/practica4/Ubicacion.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="973" y="143"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="org.eda2.practica4.TablasPrecios" project="eda2-2018" 
+    file="/eda2-2018/src/org/eda2/practica4/TablasPrecios.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="324" x="1166" y="401"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="12">    
+    <bendpoint x="664" y="310"/>    
+    <bendpoint x="661" y="108"/>    
+    <bendpoint x="520" y="110"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="13" name="vertices">        
+        <position height="18" width="49" x="391" y="176"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="2147483647">        
+        <position height="16" width="21" x="531" y="117"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="15">    
+    <bendpoint x="211" y="-8"/>    
+    <bendpoint x="348" y="-7"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="16" name="origen"/>      
+      <multiplicity id="17" minimum="0" maximum="1">        
+        <position height="16" width="23" x="302" y="-18"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="18">    
+    <bendpoint x="233" y="525"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="19">    
+    <bendpoint x="236" y="226"/>    
+    <bendpoint x="791" y="226"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="20" name="automatizadas"/>      
+      <multiplicity id="21" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <bendpoint x="263" y="252"/>    
+    <bendpoint x="263" y="213"/>    
+    <bendpoint x="697" y="203"/>    
+    <bendpoint x="698" y="171"/>    
+    <bendpoint x="712" y="169"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="23" name="recorridos">        
+        <position height="18" width="26" x="669" y="161"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <bendpoint x="760" y="286"/>    
+    <bendpoint x="950" y="289"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="26" name="tipo"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="28">    
+    <bendpoint x="1140" y="362"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </nesting>  
+  <generalization id="29">    
+    <bendpoint x="715" y="-41"/>    
+    <bendpoint x="523" y="-38"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <association id="30">    
+    <bendpoint x="632" y="307"/>    
+    <bendpoint x="621" y="70"/>    
+    <bendpoint x="524" y="70"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="31" name="anteriores">        
+        <position height="18" width="59" x="596" y="272"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="33">    
+    <bendpoint x="1169" y="528"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="34">    
+    <bendpoint x="451" y="250"/>    
+    <bendpoint x="450" y="234"/>    
+    <bendpoint x="651" y="234"/>    
+    <bendpoint x="651" y="45"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="35" name="noAutomatizadas"/>      
+      <multiplicity id="36" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
+    <bendpoint x="573" y="28"/>    
+    <bendpoint x="579" y="274"/>    
+    <bendpoint x="874" y="273"/>    
+    <bendpoint x="874" y="233"/>    
+    <bendpoint x="903" y="232"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="38" name="ubicacion">        
+        <position height="18" width="56" x="841" y="214"/>      
+      </attribute>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="40">    
+    <bendpoint x="582" y="367"/>    
+    <bendpoint x="554" y="367"/>    
+    <bendpoint x="552" y="154"/>    
+    <bendpoint x="513" y="158"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="41" name="previo">        
+        <position height="18" width="40" x="521" y="163"/>      
+      </attribute>      
+      <multiplicity id="42" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
+    <bendpoint x="345" y="51"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="44" name="destino"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <bendpoint x="608" y="309"/>    
+    <bendpoint x="600" y="139"/>    
+    <bendpoint x="520" y="142"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="47" name="central">        
+        <position height="18" width="43" x="527" y="93"/>      
+      </attribute>      
+      <multiplicity id="48" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

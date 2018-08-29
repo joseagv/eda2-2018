@@ -4,7 +4,7 @@ public class Ubicacion implements Comparable {
 
 	private int calle;
 	private int avenida;
-	
+
 	public Ubicacion(int calle, int avenida) {
 		this.calle = calle;
 		this.avenida = avenida;
@@ -28,9 +28,9 @@ public class Ubicacion implements Comparable {
 
 	@Override
 	public String toString() {
-		return calle + "," + avenida;
+		return "(Ca " + calle + ", Av " + avenida + ")";
 	}
-	
+
 	public boolean equals (Object o) {
 		Ubicacion u = (Ubicacion) o;
 		boolean mismaCalle = calle == u.calle;
@@ -54,6 +54,6 @@ public class Ubicacion implements Comparable {
 			return +1;
 		return 0;
 	}
-	
-	
+
+
 }

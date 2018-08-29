@@ -9,9 +9,9 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 /* esta clase almacena el grafo de las lineas de metro
- * igual que en EDA I voy a hacer un 
+ * igual que en EDA I voy a hacer un
  * TreeMap<Vertice, TreeMap<Vertice, Arista>>
- * para poner los vertices como claves de un TreeMap, 
+ * para poner los vertices como claves de un TreeMap,
  * necesito que implementen la interface Comparable
  */
 public class Grafo {
@@ -27,7 +27,7 @@ public class Grafo {
 	protected int numeroAristas;
 	protected Vertice central;
 
-	// para la practica 3
+	// para la practica 4
 
 	protected ArrayList<Vertice> vertices;
 	protected double[][] distancias;
@@ -42,7 +42,7 @@ public class Grafo {
 			int cosa=0, c1, a1, c2, a2, nseg;
 			String tipo, nombreLinea;
 			Vertice v1, v2;
-			
+
 			while (entrada.hasNextLine()) {
 				String linea = entrada.nextLine();
 				if (linea.startsWith("//")) {
@@ -76,7 +76,7 @@ public class Grafo {
 					sc = new Scanner (linea);
 					c1 = sc.nextInt();
 					a1 = sc.nextInt();
-					c2 = sc.nextInt(); 
+					c2 = sc.nextInt();
 					a2 = sc.nextInt();
 					nseg = sc.nextInt();
 					nombreLinea = sc.next();
@@ -99,11 +99,11 @@ public class Grafo {
 			mapa.put(v, new TreeMap<Vertice, Arista>());
 		}
 	}
-	
+
 	private void insertarArista (Vertice v1, Vertice v2, int nseg,
 						String nombreLinea) {
 		Arista arista1, arista2;
-		
+
 		arista1 = new Arista (v1, v2, nseg, nombreLinea);
 		arista2 = new Arista (v2, v1, nseg, nombreLinea);
 		mapa.get(v1).put(v2, arista1);
@@ -117,11 +117,11 @@ public class Grafo {
 			return null;
 		return mapa.get(origen).get(destino);
 	}
-	
+
 	public ArrayList<Vertice> getVertices () {
 		return vertices;
 	}
-	
+
 	private void dijkstra(Vertice origen) {
 		TreeSet<Vertice> s = new TreeSet<Vertice>();
 		s.add(origen);
@@ -130,7 +130,7 @@ public class Grafo {
 		for (Vertice v : mapa.keySet()) {
 			Arista a = getArista(origen, v);
 			if (a == null) {
-				distancia.put(v, Datos.INFINITO);
+				distancia.put(v, Maquinas.INFINITO);
 				previo.put(v, null);
 			} else {
 				distancia.put(v, a.getLongitud());
@@ -158,7 +158,7 @@ public class Grafo {
 	}
 
 	private Vertice extraerVertice(TreeSet<Vertice> vmenoss, TreeMap<Vertice, Double> distancia2) {
-		double min = Datos.INFINITO * 2;
+		double min = Maquinas.INFINITO * 2;
 		Vertice vertmin = null;
 		for (Vertice v : vmenoss) {
 			Double d = distancia2.get(v);
@@ -255,7 +255,7 @@ public class Grafo {
 				} else {
 					Arista a = getArista(vertices.get(i), vertices.get(j));
 					if (a == null) {
-						distancias[i][j] = Datos.INFINITO;
+						distancias[i][j] = Maquinas.INFINITO;
 						anteriores[i][j] = null;
 					} else {
 						distancias[i][j] = a.getLongitud();
@@ -279,12 +279,6 @@ public class Grafo {
 		}
 	}
 
-	/*public ArrayList<Vertice> hacerCaminoFloyd (int i, int j) {
-		ArrayList<Vertice> lista = new ArrayList<Vertice> ();
-		hacerCaminoFloyd (i, j, lista);
-		return lista;
-	}*/
-	
 	public void hacerCaminoFloyd(int i, int j, ArrayList<Vertice> lista) {
 		if (anteriores[i][j] == null || anteriores[i][j].equals(vertices.get(i))) {
 			// lista.add(v);
@@ -295,5 +289,4 @@ public class Grafo {
 			hacerCaminoFloyd (pos, j, lista);
 		}
 	}
-	
 }

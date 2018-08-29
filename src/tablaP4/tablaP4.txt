@@ -1,0 +1,1 @@
+Grafo leido con 19 verticesEstaciones Automatizadas: 13Estaciones No Automatizadas: 6
