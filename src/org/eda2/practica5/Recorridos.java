@@ -56,7 +56,7 @@ public class Recorridos extends Grafo {
 		}
 	}
 
-	public ArrayList<VerticeMaquinas> calcularRecorridos() {
+	public ArrayList<VerticeMaquinas> calcularRecorridosBranchBound() {
 		ArrayList<VerticeMaquinas> solucion = new ArrayList<VerticeMaquinas>();
 		VerticeMaquinas origen = new VerticeMaquinas(central.ubicacion);
 
@@ -80,7 +80,7 @@ public class Recorridos extends Grafo {
 		}
 		System.out.println("RUTA ESTACIONES NO AUTOMATIZADAS");
 		System.out.println("Origen = " + origen);
-		ArrayList<VerticeMaquinas> solNoAuto = calcularRecorrido(origen, noAutomatizadas);
+		ArrayList<VerticeMaquinas> solNoAuto = calcularRecorridoBranchBound(origen, noAutomatizadas);
 		solucion.addAll(solNoAuto);
 		System.out.println("\nSolucion parcial no automatizadas: " + solucion);
 		// soa = null;
@@ -88,23 +88,23 @@ public class Recorridos extends Grafo {
 		origen = solNoAuto.get(solNoAuto.size() - 1);
 		System.out.println("\nRUTA ESTACIONES AUTOMATIZADAS");
 		System.out.println("Origen = " + origen);
-		ArrayList<VerticeMaquinas> solAuto = calcularRecorrido(origen, automatizadas);
+		ArrayList<VerticeMaquinas> solAuto = calcularRecorridoBranchBound(origen, automatizadas);
 		solucion.addAll(solAuto);
 		System.out.println("\nRUTA ÓPTIMA");
 		return solucion;
 	}
 
-	public ArrayList<VerticeMaquinas> calcularRecorrido(VerticeMaquinas origen, ArrayList<VerticeMaquinas> listaVertices) {
+	public ArrayList<VerticeMaquinas> calcularRecorridoBranchBound(VerticeMaquinas origen, ArrayList<VerticeMaquinas> listaVertices) {
 		ArrayList<VerticeMaquinas> s = new ArrayList<VerticeMaquinas>();
 		int nivel = 0;
 		double tiempo = 0;
 		tiempoTotal = Double.MAX_VALUE;
 		recorridos = null;
-		recorridos = calcularRecorridoRec(origen, listaVertices, nivel, tiempo, s);
+		recorridos = calcularRecorridoBranchBoundRec(origen, listaVertices, nivel, tiempo, s);
 		return recorridos;
 	}
 
-	private ArrayList<VerticeMaquinas> calcularRecorridoRec(VerticeMaquinas origen, ArrayList<VerticeMaquinas> listaVertices, int nivel,
+	private ArrayList<VerticeMaquinas> calcularRecorridoBranchBoundRec(VerticeMaquinas origen, ArrayList<VerticeMaquinas> listaVertices, int nivel,
 			double tiempo, ArrayList<VerticeMaquinas> s) {
 			int n = listaVertices.size();
 			for (int i = 0; i < n; i++) {
@@ -123,7 +123,7 @@ public class Recorridos extends Grafo {
 					//si el tiempo ya supera el tiempoTotal, podo y no llamo recursivamente
 					//esta seria la poda
 					if (tiempo < tiempoTotal)
-						calcularRecorridoRec(v2, listaVertices, nivel + 1, tiempo, s);
+						calcularRecorridoBranchBoundRec(v2, listaVertices, nivel + 1, tiempo, s);
 				}
 				tiempo = tiempo - distancias[origen.getNumero()][v2.getNumero()] - v2.getTiempo();
 				s.remove(v2);

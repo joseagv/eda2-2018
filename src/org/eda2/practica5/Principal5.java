@@ -44,7 +44,7 @@ public class Principal5 {
 		bw.write("RUTA ÓPTIMA\n");
 
 		antes = System.nanoTime();
-		ArrayList<VerticeMaquinas> sol = grafo.calcularRecorridos();
+		ArrayList<VerticeMaquinas> sol = grafo.calcularRecorridosBranchBound();
 		for (VerticeMaquinas v: sol) {
 			System.out.println(v);
 			bw.write(v.toString() + "\n");
